@@ -11,7 +11,7 @@ services:
     volumes:
       - mysql:/var/lib/mysql
       - ./mysql/conf.d:/etc/mysql/conf.d
-      - ./sql:/docker-entrypoint-initdb.d
+      - ./mysql/sql:/docker-entrypoint-initdb.d
     env_file:
     - ./mysql/.env
     ports:
