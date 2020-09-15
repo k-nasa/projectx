@@ -6,6 +6,7 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d
     ports:
       - 8080:80
+
   mysql:
     image: mysql:8
     volumes:
@@ -16,6 +17,17 @@ services:
     - ./mysql/.env
     ports:
       - 13306:3306
+
+  elasticsearch:
+    image: elasticsearch:7.9.1
+    ports:
+      - 9200:9200
+    environment:
+      - discovery.type=single-node
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+
   redis:
     image: redis:6
     ports:
