@@ -1,0 +1,20 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:1.19.2
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    ports:
+      - "8080:80"
+  mysql:
+    image: mysql:8
+    volumes:
+      - mysql:/var/lib/mysql
+      - ./mysql/conf.d:/etc/mysql/conf.d
+      - ./sql:/docker-entrypoint-initdb.d
+    env_file:
+    - "./mysql/.env"
+    ports:
+      - "13306:3306"
+volumes:
+  mysql:
