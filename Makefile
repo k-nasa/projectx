@@ -14,3 +14,5 @@ dev: ## docker containerを立ち上げる
 	docker-compose up
 login_mysql: ## mysqlに入る
 	docker-compose exec mysql mysql -u$(MYSQL_USER) -p$(MYSQL_PASSWORD) $(MYSQL_DATABASE)
+login_redis: ## redisに入る
+	docker-compose exec redis redis-cli
